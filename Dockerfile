@@ -1,8 +1,14 @@
-from python:3.7
+FROM python:3.7
 LABEL maintainer="lu"
-EXPOSE 3111
+
+COPY techtrends /techtrends
+
 WORKDIR /techtrends
-COPY ./ .
+
 RUN pip install -r requirements.txt
+
 RUN python init_db.py
+
+EXPOSE 3111
+
 CMD ["python", "app.py"]
