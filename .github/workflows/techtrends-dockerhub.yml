@@ -32,4 +32,4 @@ jobs:
           file: Dockerfile
           platforms: linux/amd64
           push: true
-          tags: lulujoe123/techtrends:latest
+          tags: lulujoe/techtrends:latest
