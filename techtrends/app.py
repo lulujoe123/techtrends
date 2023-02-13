@@ -4,6 +4,7 @@ from flask import Flask, jsonify, json, render_template, request, url_for, redir
 from werkzeug.exceptions import abort
 from datetime import datetime
 import logging
+import sys
 
 total_db_connections = 0
 
@@ -99,6 +100,7 @@ def metrics():
 
 def log_message(msg):
     app.logger.info('{time} , {message}'.format(time=datetime.now().strftime("%m/%d/%Y, %H:%M:%S"), message=msg))
+    sys.stdout.write('{time} , {message}'.format(time=datetime.now().strftime("%m/%d/%Y, %H:%M:%S"), message=msg))
 
 # start the application on port 3111
 if __name__ == "__main__":
