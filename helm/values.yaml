@@ -1,14 +1,39 @@
-image: 
-  pullPolicy: Always
-namespace: 
-  name: prod
-replicaCount: 5
-resources: 
-  limits: 
+namespace:
+  name: sandbox
+
+service:
+  port: 4111
+  targetPort: 3111
+  protocol: TCP
+  type: ClusterIP
+
+image:
+  repository: lulujoe/techtrends
+  tag: latest
+  pullPolicy: IfNotPresent
+
+replicaCount: 1
+
+resources:
+  requests:
+    cpu: 250m
+    memory: 64Mi
+  limits:
     cpu: 500m
-    memory: 256Mi
-  requests: 
-    cpu: 350m
     memory: 128Mi
-service: 
-  port: 7111
+
+containerPort: 3111
+
+livenessProbe:
+  httpGet:
+    path: /healthz
+    port: 3111
+  initialDelaySeconds: 5
+  periodSeconds: 5
+
+readinessProbe:
+  httpGet:
+    path: /healthz
+    port: 3111
+  initialDelaySeconds: 5
+  periodSeconds: 5
