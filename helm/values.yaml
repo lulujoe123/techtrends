@@ -1,31 +1,14 @@
-namespace:
-  name: sandbox
-
-service:
-  port: 4111
-  targetPort: 3111
-  protocol: TCP
-  type: ClusterIP
-
-image:
-  repository: lulujoe/techtrends
-  tag: latest
-  pullPolicy: IfNotPresent
-
-replicaCount: 1
-
-resources:
-  requests:
-    memory: 64Mi
-    cpu: 250m
-  limits:
-    memory: 128Mi
+image: 
+  pullPolicy: Always
+namespace: 
+  name: prod
+replicaCount: 5
+resources: 
+  limits: 
     cpu: 500m
-
-containerPort: 3111
-
-livenessProbe:
-  path: /healthz
-
-readinessProbe:
-  path: /healthz
+    memory: 256Mi
+  requests: 
+    cpu: 350m
+    memory: 128Mi
+service: 
+  port: 7111
